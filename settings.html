@@ -20,20 +20,26 @@
       <main class="settings-panel">
         <h1>Paramètres du compte</h1>
 
-        <form class="settings-form" id="settingsForm">
-          <label>
-            <span>Pseudo</span>
-            <input type="text" value="Raizen" />
-          </label>
+        <form id="settingsForm" class="settings-form">
+          <div class="form-grid">
+            <label>
+              <span>Pseudo</span>
+              <input id="settingsPseudo" type="text" value="Raizen" />
+            </label>
+
+            <label>
+              <span>Email</span>
+              <input id="settingsEmail" type="email" value="raizen@example.com" />
+            </label>
+          </div>
 
           <label>
-            <span>Email</span>
-            <input type="email" value="raizen@example.com" />
-          </label>
-
-          <label>
-            <span>Bio</span>
-            <textarea rows="4">Fan de collections, d'univers manga et d'expériences RPG.</textarea>
+            <span>Thème de bannière</span>
+            <select id="settingsTheme">
+              <option value="linear-gradient(135deg, rgba(139,92,246,0.7), rgba(67,137,255,0.6))">Violet / Bleu</option>
+              <option value="linear-gradient(135deg, rgba(52,211,153,0.65), rgba(59,130,246,0.6))">Vert / Bleu</option>
+              <option value="linear-gradient(135deg, rgba(245,158,11,0.7), rgba(239,68,68,0.6))">Orange / Rouge</option>
+            </select>
           </label>
 
           <button type="submit" class="btn btn-primary">Sauvegarder</button>

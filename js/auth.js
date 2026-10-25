@@ -4,16 +4,20 @@ if (loginForm) {
   loginForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const formData = new FormData(loginForm);
-    const email = formData.get('email');
-    const password = formData.get('password');
+    const email = loginForm.querySelector('input[name="email"]').value.trim();
+    const password = loginForm.querySelector('input[name="password"]').value.trim();
 
     if (!email || !password) {
-      alert('Veuillez remplir tous les champs.');
+      alert('Veuillez compléter les champs.');
       return;
     }
 
-    localStorage.setItem('raizenUser', JSON.stringify({ email }));
+    const current = JSON.parse(localStorage.getItem('raizen_state') || '{}');
+    current.username = email.split('@')[0] || 'Raizen';
+    current.profile = current.profile || {};
+    current.profile.email = email;
+    localStorage.setItem('raizen_state', JSON.stringify(current));
+
     alert('Connexion réussie.');
     window.location.href = 'profile.html';
   });

@@ -1,53 +1,48 @@
 # RAIZEN
 
-RAIZEN est un projet de plateforme communautaire consacrée à la culture manga/anime, aux collections, aux profils d'utilisateurs et aux expériences immersives.
+RAIZEN est un projet de plateforme communautaire consacrée à la culture manga/anime, aux profils personnalisés, aux cartes, aux boosters et aux collections.
 
 ## Structure du projet
 
 ```text
 Raizen/
-├── README.md
 ├── index.html
 ├── login.html
 ├── profile.html
 ├── settings.html
+├── README.md
+├── .gitignore
+├── assets/
+│   ├── avatars/
+│   ├── banners/
+│   └── logo/
 ├── css/
 │   ├── style.css
 │   └── profile.css
-├── js/
-│   ├── app.js
-│   ├── auth.js
-│   ├── profile.js
-│   ├── collection.js
-│   ├── activity.js
-│   └── supabase.js
-├── assets/
-│   ├── logo/.gitkeep
-│   ├── banners/.gitkeep
-│   └── avatars/.gitkeep
-└── .gitignore
+└── js/
+    ├── app.js
+    ├── auth.js
+    ├── profile.js
+    ├── collection.js
+    ├── activity.js
+    └── supabase.js
 ```
 
-## Description
+## Ce qui est déjà en place
 
-- `index.html` : page d'accueil / landing page
-- `login.html` : page de connexion
-- `profile.html` : page profil utilisateur
-- `settings.html` : paramètres du compte
-- `css/style.css` : styles globaux du site
-- `css/profile.css` : styles spécifiques au profil
-- `js/app.js` : logique générale et interactions
-- `js/auth.js` : connexion / inscription
-- `js/profile.js` : contenu du profil
-- `js/collection.js` : gestion des cartes / collections
-- `js/activity.js` : activité récente
-- `js/supabase.js` : intégration backend / Supabase
-- `assets/` : ressources visuelles du projet
+- Page d'accueil premium
+- Navigation propre entre accueil / profil / connexion / réglages
+- Page profil avec statut, niveau, EXP et statistiques
+- Système de boosters sur l'accueil
+- Réglages de compte basiques
+- Préparation d'intégration Supabase et authentification sociale
 
-## Objectif
+## Prochaine étape recommandée
 
-Créer une base propre, lisible et facilement extensible pour développer la plateforme RAIZEN.
-
----
+- finaliser les liens entre les pages et l'état global du profil
+- ajouter le vrai upload d'avatar / bannière
+- relier le système de boosters à une vraie collection de cartes
+- brancher Supabase Auth pour Google / Facebook
+- mettre en place une vraie base de données utilisateur et de cartes
 
 RAIZEN — Collect · Play · Rise

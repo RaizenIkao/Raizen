@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="RAIZEN — Collection, explore et évolue dans un univers anime/manga." />
+    <meta name="description" content="RAIZEN — collection, boosts, cartes et profils anime/manga." />
     <title>RAIZEN | Accueil</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -21,12 +21,23 @@
           <a href="login.html">Connexion</a>
           <a href="settings.html">Réglages</a>
         </nav>
+
+        <div class="mini-panel">
+          <div class="mini-label">Compte</div>
+          <div class="mini-player">
+            <div class="mini-avatar">R</div>
+            <div>
+              <strong id="sidebarUsername">Raizen</strong>
+              <small>Lvl <span id="sidebarLevel">12</span></small>
+            </div>
+          </div>
+        </div>
       </aside>
 
       <main class="main-content">
         <header class="topbar">
           <div class="search-wrap">
-            <input type="search" placeholder="Rechercher une carte, un univers..." />
+            <input id="globalSearch" type="search" placeholder="Rechercher une carte, un univers..." />
           </div>
           <div class="top-actions">
             <a class="btn btn-light" href="login.html">Connexion</a>
@@ -39,17 +50,80 @@
             <span class="eyebrow">L'univers des collectionneurs</span>
             <h1>Collectionne.<br /><span>Évolue.</span> Domine.</h1>
             <p>
-              RAIZEN rassemble collection, univers, personnages et passion autour
-a d'une expérience immersive inspirée des mangas et des animés.
+              RAIZEN réunit collection, progression, boosters, profils personnalisés et univers anime/manga dans un espace premium et immersif.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#collection">Explorer</a>
-              <a class="btn btn-light" href="login.html">Créer un compte</a>
+              <a class="btn btn-primary" href="#boosters">Ouvrir un booster</a>
+              <a class="btn btn-light" href="#collection">Découvrir les cartes</a>
             </div>
           </div>
+
           <div class="hero-art" aria-hidden="true">
             <div class="orb"></div>
             <div class="symbol">雷</div>
+          </div>
+        </section>
+
+        <section class="stats-strip section">
+          <div class="stat-box">
+            <span>Cartes</span>
+            <strong id="statCards">245</strong>
+          </div>
+          <div class="stat-box">
+            <span>Boosters</span>
+            <strong id="statBoosters">0</strong>
+          </div>
+          <div class="stat-box">
+            <span>Temps de jeu</span>
+            <strong id="statPlayTime">126m</strong>
+          </div>
+          <div class="stat-box">
+            <span>EXP</span>
+            <strong id="statExp">780</strong>
+          </div>
+        </section>
+
+        <section id="boosters" class="section">
+          <div class="section-header">
+            <div>
+              <h2>Boosters RAIZEN</h2>
+              <p>Un booster = 5 cartes. Tu gagnes 1 booster toutes les 5 minutes, jusqu'à 12 stockés.</p>
+            </div>
+          </div>
+
+          <div class="boosters-layout">
+            <div class="boosters-panel">
+              <div class="booster-header">
+                <div>
+                  <span class="badge">Disponible</span>
+                  <h3>Pack Étoile Royale</h3>
+                </div>
+                <span id="boosterCount" class="booster-count">0 boosters</span>
+              </div>
+
+              <div class="timer-box">
+                <div>
+                  <small>Prochain booster</small>
+                  <strong id="boosterTimer">05:00</strong>
+                </div>
+                <button id="claimBoosterBtn" class="btn btn-primary">Récupérer</button>
+              </div>
+
+              <div class="booster-actions">
+                <button id="openOneBtn" class="btn btn-primary">Ouvrir 1 booster</button>
+                <button id="openAllBtn" class="btn btn-light">Ouvrir tous</button>
+              </div>
+            </div>
+
+            <div class="boosters-panel info-panel">
+              <h3>Règles</h3>
+              <ul>
+                <li>1 booster obtenu toutes les 5 min</li>
+                <li>Stock max : 12 boosters</li>
+                <li>Quand il reste 2 boosters ou moins, tu peux tout ouvrir d'un coup</li>
+                <li>Chaque ouverture donne 5 cartes aléatoires</li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -59,11 +133,11 @@ a d'une expérience immersive inspirée des mangas et des animés.
               <h2>Cartes à découvrir</h2>
               <p>Des univers à explorer, des collections à construire.</p>
             </div>
-            <span class="chip">5 cartes</span>
+            <span id="cardCountBadge" class="chip">0 cartes</span>
           </div>
 
           <div class="cards-grid" data-cards>
-            <article class="card">
+            <article class="card" data-name="Kael, Dragon royal" data-rarity="Légendaire" data-search="kael dragon royal fantasy aether">
               <div class="card-art art-one">🐉</div>
               <div class="card-body">
                 <span class="rarity rare">Légendaire</span>
@@ -72,7 +146,7 @@ a d'une expérience immersive inspirée des mangas et des animés.
               </div>
             </article>
 
-            <article class="card">
+            <article class="card" data-name="Ren, Ombre vive" data-rarity="Épique" data-search="ren ninja ombre vive">
               <div class="card-art art-two">影</div>
               <div class="card-body">
                 <span class="rarity epic">Épique</span>
@@ -81,7 +155,7 @@ a d'une expérience immersive inspirée des mangas et des animés.
               </div>
             </article>
 
-            <article class="card">
+            <article class="card" data-name="Mira, Flux astral" data-rarity="Rare" data-search="mira flux astral occultes">
               <div class="card-art art-three">✧</div>
               <div class="card-body">
                 <span class="rarity common">Rare</span>
@@ -90,7 +164,7 @@ a d'une expérience immersive inspirée des mangas et des animés.
               </div>
             </article>
 
-            <article class="card">
+            <article class="card" data-name="Aeron, Tempête" data-rarity="Épique" data-search="aeron tempete mer legends">
               <div class="card-art art-four">⚡</div>
               <div class="card-body">
                 <span class="rarity epic">Épique</span>
@@ -99,12 +173,39 @@ a d'une expérience immersive inspirée des mangas et des animés.
               </div>
             </article>
 
-            <article class="card">
+            <article class="card" data-name="Yuna, Gardienne lunaire" data-rarity="Rare" data-search="yuna gardienne lunaire fantasy">
               <div class="card-art art-five">🌙</div>
               <div class="card-body">
                 <span class="rarity common">Rare</span>
                 <h3>Yuna, Gardienne lunaire</h3>
                 <p>Chroniques d'Aether</p>
+              </div>
+            </article>
+
+            <article class="card" data-name="Sora, Sceau du vent" data-rarity="Rare" data-search="sora vent anime">
+              <div class="card-art art-six">✦</div>
+              <div class="card-body">
+                <span class="rarity common">Rare</span>
+                <h3>Sora, Sceau du vent</h3>
+                <p>Éveil du ciel</p>
+              </div>
+            </article>
+
+            <article class="card" data-name="Kairo, Lame du silence" data-rarity="Épique" data-search="kairo lame silence samouraï">
+              <div class="card-art art-seven">刀</div>
+              <div class="card-body">
+                <span class="rarity epic">Épique</span>
+                <h3>Kairo, Lame du silence</h3>
+                <p>Voix des samouraïs</p>
+              </div>
+            </article>
+
+            <article class="card" data-name="Liane, Vague de cristal" data-rarity="Légendaire" data-search="liane vague cristal mer">
+              <div class="card-art art-eight">❄</div>
+              <div class="card-body">
+                <span class="rarity rare">Légendaire</span>
+                <h3>Liane, Vague de cristal</h3>
+                <p>Mer de glace</p>
               </div>
             </article>
           </div>
@@ -117,6 +218,7 @@ a d'une expérience immersive inspirée des mangas et des animés.
                 <h2>Paquets recommandés</h2>
               </div>
             </div>
+
             <div class="pack-list">
               <div class="pack-item">
                 <div class="pack-icon">✦</div>
@@ -148,7 +250,8 @@ a d'une expérience immersive inspirée des mangas et des animés.
                 <h2>Activité</h2>
               </div>
             </div>
-            <div class="activity-list" data-activity>
+
+            <div class="activity-list">
               <div class="activity-item">
                 <span class="avatar">R</span>
                 <div>
