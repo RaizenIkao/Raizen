@@ -1,48 +1,37 @@
 # RAIZEN
 
-RAIZEN est un projet de plateforme communautaire consacrée à la culture manga/anime, aux profils personnalisés, aux cartes, aux boosters et aux collections.
+RAIZEN est un projet de plateforme communautaire de cartes inspirée des univers anime et manga.
 
-## Structure du projet
+## Audit validé
 
-```text
-Raizen/
-├── index.html
-├── login.html
-├── profile.html
-├── settings.html
-├── README.md
-├── .gitignore
-├── assets/
-│   ├── avatars/
-│   ├── banners/
-│   └── logo/
-├── css/
-│   ├── style.css
-│   └── profile.css
-└── js/
-    ├── app.js
-    ├── auth.js
-    ├── profile.js
-    ├── collection.js
-    ├── activity.js
-    └── supabase.js
-```
+Le dépôt a été audité et les points suivants sont confirmés :
+- les pages d'accueil, profil et réglages sont les fondations utiles à conserver ;
+- les dossiers `css/css/` et `css/js/` sont des doublons hérités et doivent être évités ;
+- les fichiers vides, incomplets et les scripts de démonstration locale doivent être clairement séparés du backend réel ;
+- la structure front statique est exploitable pour GitHub Pages ;
+- les fonctions Supabase et authentification réelle doivent passer par un backend sécurisé.
 
-## Ce qui est déjà en place
+## Phase en cours
 
-- Page d'accueil premium
-- Navigation propre entre accueil / profil / connexion / réglages
-- Page profil avec statut, niveau, EXP et statistiques
-- Système de boosters sur l'accueil
-- Réglages de compte basiques
-- Préparation d'intégration Supabase et authentification sociale
+Le front a été consolidé pour couvrir :
+- accueil fonctionnel,
+- navigation cohérente,
+- collection filtrable,
+- booster local démonstration,
+- profil personnalisé,
+- paramètres de thème et d'interface,
+- documentation des données de catalogue.
+
+## Limites connues
+
+- Aucun compte réel n'est branché.
+- Les identifiants Google/Facebook ne sont pas configurés.
+- Les données ne sont pas synchronisées avec Supabase.
+- Les boosters et l'EXP ne doivent pas être présentés comme sécurisés sans backend.
 
 ## Prochaine étape recommandée
 
-- finaliser les liens entre les pages et l'état global du profil
-- ajouter le vrai upload d'avatar / bannière
-- relier le système de boosters à une vraie collection de cartes
-- brancher Supabase Auth pour Google / Facebook
-- mettre en place une vraie base de données utilisateur et de cartes
-
-RAIZEN — Collect · Play · Rise
+1. Finaliser la collection avec fiche détaillée et variantes.
+2. Ajouter le système d'EXP, niveaux et succès.
+3. Préparer Supabase Auth et le schéma SQL.
+4. Vérifier le déploiement GitHub Pages / Supabase.

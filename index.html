@@ -3,32 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="RAIZEN — collection, boosts, cartes et profils anime/manga." />
+    <meta name="description" content="RAIZEN — Collectionne, explore et construis ta légende." />
+    <meta name="theme-color" content="#8B5CF6" />
     <title>RAIZEN | Accueil</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/collection.css" />
+    <link rel="stylesheet" href="css/boosters.css" />
+    <link rel="manifest" href="manifest.webmanifest" />
   </head>
-  <body>
+  <body data-theme="dark">
     <div class="app-shell">
-      <aside class="sidebar">
+      <aside class="sidebar" aria-label="Menu principal">
         <div class="brand-block">
           <div class="brand">RAIZEN</div>
-          <p>Collect · Play · Rise</p>
+          <p>COLLECT • PLAY • RISE</p>
         </div>
 
         <nav class="nav">
           <a class="active" href="index.html">Accueil</a>
+          <a href="#explorer">Explorer</a>
+          <a href="#collection">Collection</a>
+          <a href="#boosters">Boosters</a>
+          <a href="#community">Communauté</a>
           <a href="profile.html">Profil</a>
-          <a href="login.html">Connexion</a>
-          <a href="settings.html">Réglages</a>
+          <a href="settings.html">Paramètres</a>
         </nav>
 
         <div class="mini-panel">
           <div class="mini-label">Compte</div>
           <div class="mini-player">
-            <div class="mini-avatar">R</div>
+            <div class="mini-avatar" id="miniAvatar">R</div>
             <div>
               <strong id="sidebarUsername">Raizen</strong>
-              <small>Lvl <span id="sidebarLevel">12</span></small>
+              <small>Niv. <span id="sidebarLevel">12</span></small>
             </div>
           </div>
         </div>
@@ -37,20 +44,22 @@
       <main class="main-content">
         <header class="topbar">
           <div class="search-wrap">
-            <input id="globalSearch" type="search" placeholder="Rechercher une carte, un univers..." />
+            <input id="globalSearch" type="search" placeholder="Rechercher une carte, un univers..." aria-label="Recherche" />
           </div>
+
           <div class="top-actions">
+            <button id="themeToggle" class="btn btn-light" type="button">Mode clair</button>
             <a class="btn btn-light" href="login.html">Connexion</a>
             <a class="btn btn-primary" href="profile.html">Mon profil</a>
           </div>
         </header>
 
-        <section class="hero">
+        <section class="hero panel">
           <div class="hero-copy">
             <span class="eyebrow">L'univers des collectionneurs</span>
             <h1>Collectionne.<br /><span>Évolue.</span> Domine.</h1>
             <p>
-              RAIZEN réunit collection, progression, boosters, profils personnalisés et univers anime/manga dans un espace premium et immersif.
+              RAIZEN réunit univers anime/manga, cartes rares, boosters, progression et profil personnalisable dans un espace moderne et immersif.
             </p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="#boosters">Ouvrir un booster</a>
@@ -87,18 +96,18 @@
           <div class="section-header">
             <div>
               <h2>Boosters RAIZEN</h2>
-              <p>Un booster = 5 cartes. Tu gagnes 1 booster toutes les 5 minutes, jusqu'à 12 stockés.</p>
+              <p>1 booster = 5 cartes. Un nouveau booster toutes les 5 minutes.</p>
             </div>
           </div>
 
           <div class="boosters-layout">
-            <div class="boosters-panel">
+            <div class="boosters-panel panel">
               <div class="booster-header">
                 <div>
                   <span class="badge">Disponible</span>
                   <h3>Pack Étoile Royale</h3>
                 </div>
-                <span id="boosterCount" class="booster-count">0 boosters</span>
+                <span id="boosterCount" class="booster-count">0 booster(s)</span>
               </div>
 
               <div class="timer-box">
@@ -106,38 +115,45 @@
                   <small>Prochain booster</small>
                   <strong id="boosterTimer">05:00</strong>
                 </div>
-                <button id="claimBoosterBtn" class="btn btn-primary">Récupérer</button>
+                <button id="claimBoosterBtn" class="btn btn-primary" type="button">Récupérer</button>
               </div>
 
               <div class="booster-actions">
-                <button id="openOneBtn" class="btn btn-primary">Ouvrir 1 booster</button>
-                <button id="openAllBtn" class="btn btn-light">Ouvrir tous</button>
+                <button id="openOneBtn" class="btn btn-primary" type="button">Ouvrir 1</button>
+                <button id="openAllBtn" class="btn btn-light" type="button">Ouvrir tout</button>
               </div>
             </div>
 
-            <div class="boosters-panel info-panel">
+            <div class="boosters-panel panel info-panel">
               <h3>Règles</h3>
               <ul>
-                <li>1 booster obtenu toutes les 5 min</li>
-                <li>Stock max : 12 boosters</li>
-                <li>Quand il reste 2 boosters ou moins, tu peux tout ouvrir d'un coup</li>
-                <li>Chaque ouverture donne 5 cartes aléatoires</li>
+                <li>1 booster toutes les 5 minutes.</li>
+                <li>Stock max : 12 boosters.</li>
+                <li>Ouverture de masse disponible si 2 boosters ou moins restent.</li>
+                <li>Chaque ouverture donne 5 cartes aléatoires.</li>
               </ul>
             </div>
           </div>
         </section>
 
-        <section class="section" id="collection">
+        <section id="collection" class="section">
           <div class="section-header">
             <div>
-              <h2>Cartes à découvrir</h2>
-              <p>Des univers à explorer, des collections à construire.</p>
+              <h2>Collection</h2>
+              <p>Des univers, des raretés, des variantes et des albums à compléter.</p>
             </div>
             <span id="cardCountBadge" class="chip">0 cartes</span>
           </div>
 
-          <div class="cards-grid" data-cards>
-            <article class="card" data-name="Kael, Dragon royal" data-rarity="Légendaire" data-search="kael dragon royal fantasy aether">
+          <div class="collection-toolbar">
+            <button type="button" class="filter-chip active" data-filter="all">Toutes</button>
+            <button type="button" class="filter-chip" data-filter="Légendaire">Légendaires</button>
+            <button type="button" class="filter-chip" data-filter="Épique">Épiques</button>
+            <button type="button" class="filter-chip" data-filter="Rare">Rares</button>
+          </div>
+
+          <div class="cards-grid" id="cardGrid">
+            <article class="card" data-rarity="Légendaire" data-name="Kael, Dragon royal" data-search="kael dragon royal fantasy aether">
               <div class="card-art art-one">🐉</div>
               <div class="card-body">
                 <span class="rarity rare">Légendaire</span>
@@ -146,7 +162,7 @@
               </div>
             </article>
 
-            <article class="card" data-name="Ren, Ombre vive" data-rarity="Épique" data-search="ren ninja ombre vive">
+            <article class="card" data-rarity="Épique" data-name="Ren, Ombre vive" data-search="ren ninja ombre vive">
               <div class="card-art art-two">影</div>
               <div class="card-body">
                 <span class="rarity epic">Épique</span>
@@ -155,7 +171,7 @@
               </div>
             </article>
 
-            <article class="card" data-name="Mira, Flux astral" data-rarity="Rare" data-search="mira flux astral occultes">
+            <article class="card" data-rarity="Rare" data-name="Mira, Flux astral" data-search="mira flux astral energie occultes">
               <div class="card-art art-three">✧</div>
               <div class="card-body">
                 <span class="rarity common">Rare</span>
@@ -164,7 +180,7 @@
               </div>
             </article>
 
-            <article class="card" data-name="Aeron, Tempête" data-rarity="Épique" data-search="aeron tempete mer legends">
+            <article class="card" data-rarity="Épique" data-name="Aeron, Tempête" data-search="aeron tempete mer legende">
               <div class="card-art art-four">⚡</div>
               <div class="card-body">
                 <span class="rarity epic">Épique</span>
@@ -173,7 +189,7 @@
               </div>
             </article>
 
-            <article class="card" data-name="Yuna, Gardienne lunaire" data-rarity="Rare" data-search="yuna gardienne lunaire fantasy">
+            <article class="card" data-rarity="Rare" data-name="Yuna, Gardienne lunaire" data-search="yuna gardienne lunaire fantasy">
               <div class="card-art art-five">🌙</div>
               <div class="card-body">
                 <span class="rarity common">Rare</span>
@@ -182,7 +198,7 @@
               </div>
             </article>
 
-            <article class="card" data-name="Sora, Sceau du vent" data-rarity="Rare" data-search="sora vent anime">
+            <article class="card" data-rarity="Rare" data-name="Sora, Sceau du vent" data-search="sora vent ciel">
               <div class="card-art art-six">✦</div>
               <div class="card-body">
                 <span class="rarity common">Rare</span>
@@ -191,7 +207,7 @@
               </div>
             </article>
 
-            <article class="card" data-name="Kairo, Lame du silence" data-rarity="Épique" data-search="kairo lame silence samouraï">
+            <article class="card" data-rarity="Épique" data-name="Kairo, Lame du silence" data-search="kairo lame silence samourai">
               <div class="card-art art-seven">刀</div>
               <div class="card-body">
                 <span class="rarity epic">Épique</span>
@@ -200,7 +216,7 @@
               </div>
             </article>
 
-            <article class="card" data-name="Liane, Vague de cristal" data-rarity="Légendaire" data-search="liane vague cristal mer">
+            <article class="card" data-rarity="Légendaire" data-name="Liane, Vague de cristal" data-search="liane vague cristal glace">
               <div class="card-art art-eight">❄</div>
               <div class="card-body">
                 <span class="rarity rare">Légendaire</span>
@@ -211,7 +227,7 @@
           </div>
         </section>
 
-        <section class="section two-columns">
+        <section id="explorer" class="section two-columns">
           <div class="panel">
             <div class="section-header compact">
               <div>
@@ -244,7 +260,7 @@
             </div>
           </div>
 
-          <div class="panel">
+          <div id="community" class="panel">
             <div class="section-header compact">
               <div>
                 <h2>Activité</h2>
@@ -263,7 +279,7 @@
                 <span class="avatar">A</span>
                 <div>
                   <strong>Événement</strong>
-                  <p>Une nouvelle vague de boosters arrive prochainement.</p>
+                  <p>Une vague de boosters est disponible cette semaine.</p>
                 </div>
               </div>
             </div>
@@ -273,5 +289,8 @@
     </div>
 
     <script src="js/app.js"></script>
+    <script src="js/boosters.js"></script>
+    <script src="js/collection.js"></script>
   </body>
 </html>
+

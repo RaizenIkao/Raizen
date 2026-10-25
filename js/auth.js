@@ -8,16 +8,22 @@ if (loginForm) {
     const password = loginForm.querySelector('input[name="password"]').value.trim();
 
     if (!email || !password) {
-      alert('Veuillez compléter les champs.');
+      alert('Veuillez remplir les champs requis.');
       return;
     }
 
-    const current = JSON.parse(localStorage.getItem('raizen_state') || '{}');
-    current.username = email.split('@')[0] || 'Raizen';
-    current.profile = current.profile || {};
-    current.profile.email = email;
-    localStorage.setItem('raizen_state', JSON.stringify(current));
+    const state = JSON.parse(localStorage.getItem('raizen_state') || '{}');
+    const next = {
+      ...state,
+      username: email.split('@')[0] || 'Raizen',
+      profile: {
+        ...(state.profile || {}),
+        email,
+        bio: state.profile?.bio || 'Fan de manga, anime et univers de cartes.'
+      }
+    };
 
+    localStorage.setItem('raizen_state', JSON.stringify(next));
     alert('Connexion réussie.');
     window.location.href = 'profile.html';
   });

@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RAIZEN | Réglages</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/settings.css" />
   </head>
   <body class="settings-page">
     <div class="settings-shell">
       <header class="settings-header">
         <div class="brand">RAIZEN</div>
-        <nav class="nav-inline">
+        <nav class="nav-inline" aria-label="Réglages navigation">
           <a href="index.html">Accueil</a>
           <a href="profile.html">Profil</a>
           <a class="active" href="settings.html">Réglages</a>
         </nav>
       </header>
 
-      <main class="settings-panel">
+      <main class="settings-panel panel">
         <h1>Paramètres du compte</h1>
+        <p class="subtitle">Mode démonstration local. Les données ne sont pas synchronisées en backend.</p>
 
         <form id="settingsForm" class="settings-form">
           <div class="form-grid">
@@ -26,7 +28,6 @@
               <span>Pseudo</span>
               <input id="settingsPseudo" type="text" value="Raizen" />
             </label>
-
             <label>
               <span>Email</span>
               <input id="settingsEmail" type="email" value="raizen@example.com" />
@@ -34,11 +35,25 @@
           </div>
 
           <label>
-            <span>Thème de bannière</span>
+            <span>Thème</span>
             <select id="settingsTheme">
-              <option value="linear-gradient(135deg, rgba(139,92,246,0.7), rgba(67,137,255,0.6))">Violet / Bleu</option>
-              <option value="linear-gradient(135deg, rgba(52,211,153,0.65), rgba(59,130,246,0.6))">Vert / Bleu</option>
-              <option value="linear-gradient(135deg, rgba(245,158,11,0.7), rgba(239,68,68,0.6))">Orange / Rouge</option>
+              <option value="dark">Sombre</option>
+              <option value="light">Clair</option>
+              <option value="system">Système</option>
+            </select>
+          </label>
+
+          <label class="toggle-row">
+            <span>Réduire les animations</span>
+            <input id="settingsReduceMotion" type="checkbox" />
+          </label>
+
+          <label>
+            <span>Confidentialité</span>
+            <select id="settingsPrivacy">
+              <option value="public">Public</option>
+              <option value="friends">Amis seulement</option>
+              <option value="private">Privé</option>
             </select>
           </label>
 
@@ -47,6 +62,6 @@
       </main>
     </div>
 
-    <script src="js/app.js"></script>
+    <script src="js/settings.js"></script>
   </body>
 </html>

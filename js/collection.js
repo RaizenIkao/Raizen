@@ -1,9 +1,14 @@
-const collection = [
-  { name: 'Kael, Dragon royal', rarity: 'Légendaire' },
-  { name: 'Ren, Ombre vive', rarity: 'Épique' },
-  { name: 'Mira, Flux astral', rarity: 'Rare' },
-  { name: 'Aeron, Tempête', rarity: 'Épique' },
-  { name: 'Yuna, Gardienne lunaire', rarity: 'Rare' }
-];
+const filterButtons = document.querySelectorAll('.filter-chip');
+const cards = [...document.querySelectorAll('#cardGrid .card')];
 
-console.log('RAIZEN collection loaded:', collection.length);
+filterButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    filterButtons.forEach((chip) => chip.classList.toggle('active', chip === button));
+    const selected = button.dataset.filter;
+
+    cards.forEach((card) => {
+      const visible = selected === 'all' || card.dataset.rarity === selected;
+      card.style.display = visible ? 'block' : 'none';
+    });
+  });
+});

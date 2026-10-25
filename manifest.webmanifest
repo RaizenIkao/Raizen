@@ -1,0 +1,21 @@
+{
+  "name": "RAIZEN",
+  "short_name": "RAIZEN",
+  "description": "RAIZEN — collection, progression, boosters et profils anime/manga.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1020",
+  "theme_color": "#8B5CF6",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

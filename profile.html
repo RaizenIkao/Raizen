@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RAIZEN | Profil</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/profile.css" />
   </head>
   <body class="profile-page">
     <div class="profile-layout">
       <header class="profile-header">
         <div class="brand">RAIZEN</div>
-        <nav class="nav-inline">
+        <nav class="nav-inline" aria-label="Profil navigation">
           <a href="index.html">Accueil</a>
           <a class="active" href="profile.html">Profil</a>
           <a href="settings.html">Réglages</a>
@@ -18,13 +19,13 @@
       </header>
 
       <section class="banner-surface" data-profile-banner>
-        <button class="btn btn-light banner-edit">Modifier la bannière</button>
+        <button class="btn btn-light banner-edit" type="button">Modifier la bannière</button>
       </section>
 
-      <section class="profile-card">
+      <section class="profile-card panel">
         <div class="avatar-large-wrap">
           <div class="avatar-large" data-profile-avatar>R</div>
-          <button class="avatar-upload" aria-label="Modifier l’avatar">✎</button>
+          <button class="avatar-upload" type="button" aria-label="Modifier l’avatar">✎</button>
         </div>
 
         <div class="profile-meta">
@@ -39,25 +40,25 @@
       </section>
 
       <section class="stats-grid">
-        <div class="stat-box-strong">
+        <div class="stat-box-strong panel">
           <strong data-stat="cards">245</strong>
           <span>Cartes</span>
         </div>
-        <div class="stat-box-strong">
+        <div class="stat-box-strong panel">
           <strong data-stat="boosters">12</strong>
           <span>Boosters</span>
         </div>
-        <div class="stat-box-strong">
+        <div class="stat-box-strong panel">
           <strong data-stat="time">126 min</strong>
           <span>Temps de jeu</span>
         </div>
-        <div class="stat-box-strong">
+        <div class="stat-box-strong panel">
           <strong data-stat="level">Niv 12</strong>
           <span>Progression</span>
         </div>
       </section>
 
-      <section class="collection-panel">
+      <section class="collection-panel panel">
         <div class="panel-head">
           <h2>Collection</h2>
           <a href="index.html">Voir plus</a>
