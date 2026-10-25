@@ -1,566 +1,174 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080b15">
-<meta name="description" content="RAIZEN — Collectionne, explore et construis ta légende dans l'univers manga et anime.">
-<title>RAIZEN — Collect · Play · Rise</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="RAIZEN — Collection, explore et évolue dans un univers anime/manga." />
+    <title>RAIZEN | Accueil</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <div class="brand">RAIZEN</div>
+          <p>Collect · Play · Rise</p>
+        </div>
 
-<style>
-:root {
-  --bg:#080b15;
-  --panel:#101729;
-  --panel2:#151f34;
-  --line:#26334b;
-  --text:#f4f6ff;
-  --muted:#9daac2;
-  --gold:#f1b94b;
-  --purple:#9c76ff;
-  --blue:#55a9ff;
-  --green:#45dfb0;
-  --radius:16px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif
-}
-button,input{font:inherit}
-button,a{transition:.2s ease}
-a{color:inherit;text-decoration:none}
-button{cursor:pointer}
-[hidden]{display:none!important}
+        <nav class="nav">
+          <a class="active" href="index.html">Accueil</a>
+          <a href="profile.html">Profil</a>
+          <a href="login.html">Connexion</a>
+          <a href="settings.html">Réglages</a>
+        </nav>
+      </aside>
 
-/* CINÉMATIQUE RAIZEN */
-#raizen-intro{
-  position:fixed;inset:0;z-index:9999;
-  display:grid;place-items:center;overflow:hidden;
-  background:radial-gradient(ellipse at 50% 44%,#5b4aae25,transparent 48%),#101426;
-  color:#fff;opacity:1;visibility:visible;
-  transition:opacity .7s ease,visibility .7s ease
-}
-#raizen-intro.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
-#raizen-intro:before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(#8b5cf614 1px,transparent 1px),
-    linear-gradient(90deg,#8b5cf614 1px,transparent 1px);
-  background-size:56px 56px;
-  mask-image:radial-gradient(ellipse,black,transparent 75%)
-}
-.intro-ambient{
-  position:absolute;width:min(75vw,620px);aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle,#8b5cf62e,#4389ff10 42%,transparent 70%);
-  filter:blur(15px);animation:introBreathe 3s ease-in-out infinite alternate
-}
-.intro-content{
-  position:relative;width:min(92%,600px);padding:24px;
-  text-align:center;display:flex;align-items:center;flex-direction:column;
-  animation:introRise .8s cubic-bezier(.2,.7,.2,1) both
-}
-.intro-emblem{width:84px;height:84px;margin-bottom:25px}
-.intro-frame,.intro-mark{
-  fill:none;stroke:url(#intro-gradient);stroke-linecap:round;
-  stroke-linejoin:round;stroke-dasharray:260;stroke-dashoffset:260;
-  animation:introDraw .85s .1s ease forwards
-}
-.intro-frame{stroke-width:1.8}
-.intro-mark{stroke-width:4;stroke-dasharray:150;animation-delay:.3s}
-.intro-wordmark{
-  display:flex;gap:.035em;margin:0;font-size:clamp(3rem,10vw,5.4rem);
-  line-height:1;font-weight:950;letter-spacing:.13em
-}
-.intro-letter{
-  display:inline-block;opacity:0;transform:translateY(20px);
-  background:linear-gradient(115deg,#4389ff,#8b5cf6 65%,#b5a0ff);
-  background-clip:text;-webkit-background-clip:text;color:transparent;
-  animation:introLetter .55s cubic-bezier(.16,1,.3,1) forwards
-}
-.intro-letter:nth-child(1){animation-delay:.2s}
-.intro-letter:nth-child(2){animation-delay:.27s}
-.intro-letter:nth-child(3){animation-delay:.34s}
-.intro-letter:nth-child(4){animation-delay:.41s}
-.intro-letter:nth-child(5){animation-delay:.48s}
-.intro-letter:nth-child(6){animation-delay:.55s}
-.intro-tagline{
-  margin:22px 0 0;color:#aeb7d1;font-size:clamp(.62rem,2.2vw,.78rem);
-  font-weight:650;letter-spacing:.15em;line-height:1.9;
-  opacity:0;animation:introFade .6s .85s ease forwards
-}
-.intro-divider{
-  width:36px;height:2px;margin:19px 0;background:#f1b94b;
-  transform:scaleX(0);animation:introLine .4s 1s ease forwards
-}
-.intro-subline{
-  color:#929bb8;font-size:.6rem;letter-spacing:.2em;
-  opacity:0;animation:introFade .5s 1.05s ease forwards
-}
-.intro-loading{width:180px;margin-top:35px}
-.intro-track{height:2px;overflow:hidden;background:#8b5cf633}
-.intro-bar{
-  width:40%;height:100%;
-  background:linear-gradient(90deg,#4389ff,#8b5cf6,#f1b94b);
-  animation:introLoading 1.1s ease-in-out infinite alternate
-}
-.intro-label{margin-top:12px;color:#929bb8;font-size:.55rem;letter-spacing:.2em}
-@keyframes introDraw{to{stroke-dashoffset:0}}
-@keyframes introLetter{to{opacity:1;transform:translateY(0)}}
-@keyframes introFade{to{opacity:1}}
-@keyframes introLine{to{transform:scaleX(1)}}
-@keyframes introRise{
-  from{opacity:0;transform:translateY(10px)}
-  to{opacity:1;transform:translateY(0)}
-}
-@keyframes introBreathe{from{transform:scale(.92);opacity:.7}to{transform:scale(1.08);opacity:1}}
-@keyframes introLoading{from{transform:translateX(-20%)}to{transform:translateX(190%)}}
-@media(prefers-reduced-motion:reduce){
-  #raizen-intro *,#raizen-intro *:before{
-    animation-duration:.01ms!important;animation-iteration-count:1!important
-  }
-}
+      <main class="main-content">
+        <header class="topbar">
+          <div class="search-wrap">
+            <input type="search" placeholder="Rechercher une carte, un univers..." />
+          </div>
+          <div class="top-actions">
+            <a class="btn btn-light" href="login.html">Connexion</a>
+            <a class="btn btn-primary" href="profile.html">Mon profil</a>
+          </div>
+        </header>
 
-/* STRUCTURE */
-.layout{min-height:100vh}
-.sidebar{
-  position:fixed;inset:0 auto 0 0;width:232px;
-  background:#0b101d;border-right:1px solid var(--line);
-  padding:25px 15px;z-index:5;overflow:auto
-}
-.brand{
-  font-size:29px;font-weight:950;letter-spacing:2px;
-  background:linear-gradient(110deg,#fff,#f1b94b);
-  -webkit-background-clip:text;color:transparent
-}
-.tagline{font-size:9px;letter-spacing:3px;color:var(--muted);margin:3px 0 30px}
-.nav-title{font-size:10px;letter-spacing:2px;color:#72819d;margin:23px 10px 9px}
-.nav{
-  display:flex;align-items:center;gap:12px;padding:12px;
-  border-radius:10px;color:#bdc7da;font-size:13px;margin:3px 0
-}
-.nav:hover,.nav.active{background:#1a2235;color:#fff}
-.nav.active{border-left:3px solid var(--gold)}
-.nav-icon{width:22px;text-align:center;font-size:17px}
-.sidebar-note{
-  margin-top:27px;padding:15px;border:1px solid var(--line);
-  border-radius:14px;background:linear-gradient(140deg,#171e34,#111421)
-}
-.sidebar-note strong{display:block;margin-bottom:7px}
-.sidebar-note p{font-size:12px;color:var(--muted);line-height:1.6}
-.main{margin-left:232px;min-width:0}
-.topbar{
-  height:72px;border-bottom:1px solid var(--line);display:flex;
-  align-items:center;gap:15px;padding:0 28px;background:#080b15ef;
-  position:sticky;top:0;z-index:4;backdrop-filter:blur(15px)
-}
-.search{
-  flex:1;max-width:570px;background:#101729;border:1px solid var(--line);
-  border-radius:10px;padding:11px 14px;color:white;outline:none;width:100%
-}
-.search:focus{border-color:var(--purple)}
-.top-actions{display:flex;gap:9px;margin-left:auto}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  border:1px solid var(--line);border-radius:10px;padding:10px 14px;
-  background:#111a2b;color:white;font-weight:650;font-size:12px
-}
-.btn:hover{transform:translateY(-1px);border-color:var(--gold)}
-.btn.gold{background:linear-gradient(120deg,#f8d579,#e5a42d);color:#1a1720;border:0}
-.content{padding:25px;max-width:1800px;margin:auto}
-.hero{
-  position:relative;overflow:hidden;min-height:345px;border:1px solid #34425e;
-  border-radius:20px;padding:35px;display:flex;align-items:center;
-  background:radial-gradient(ellipse at 78% 25%,#533f89 0,transparent 35%),
-  radial-gradient(ellipse at 88% 90%,#174f80 0,transparent 40%),
-  linear-gradient(110deg,#11182a,#17142d 60%,#101b32)
-}
-.hero:after{
-  content:"";position:absolute;right:-40px;top:-100px;width:390px;height:390px;
-  border:1px solid #ffffff14;border-radius:50%;
-  box-shadow:0 0 0 35px #ffffff05,0 0 0 75px #ffffff04;pointer-events:none
-}
-.hero-content{position:relative;z-index:1;max-width:620px}
-.eyebrow{color:var(--gold);font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase}
-.hero h1{font-size:clamp(35px,5vw,65px);line-height:1.02;letter-spacing:-2px;margin:15px 0}
-.hero h1 span{color:var(--gold)}
-.hero p{max-width:490px;color:#c1c9dc;line-height:1.8;font-size:14px}
-.hero-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:23px}
-.hero-art{
-  position:absolute;right:5%;bottom:0;width:36%;height:86%;
-  display:flex;align-items:center;justify-content:center;pointer-events:none
-}
-.art-orb{
-  width:min(290px,100%);aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle at 40% 35%,#c5a9ff,#6445bf 25%,#16234c 62%,transparent 72%);
-  filter:drop-shadow(0 0 45px #8060ff55);opacity:.9
-}
-.art-symbol{
-  position:absolute;font-size:clamp(80px,13vw,170px);font-weight:950;
-  color:#fff;text-shadow:0 0 35px #8e72ff;transform:rotate(-12deg)
-}
-.section{margin-top:30px}
-.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}
-.section-head h2{font-size:19px;margin:0;letter-spacing:-.4px}
-.sub{font-size:12px;color:var(--muted);margin-top:5px}
-.link{font-size:12px;color:var(--gold);background:none;border:0}
-.features{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
-.feature{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:20px;min-height:137px}
-.feature:hover{transform:translateY(-3px);border-color:#6d5aa5}
-.feature .icon{font-size:26px;margin-bottom:12px}
-.feature h3{margin:0 0 6px;font-size:14px}
-.feature p{font-size:12px;line-height:1.6;color:var(--muted);margin:0}
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.chip{border:1px solid var(--line);border-radius:30px;background:var(--panel);color:var(--muted);padding:8px 13px;font-size:11px}
-.chip.active,.chip:hover{background:#25213b;border-color:var(--purple);color:white}
-.universes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
-.universe{
-  border:1px solid var(--line);border-radius:var(--radius);padding:18px;
-  min-height:155px;position:relative;overflow:hidden;
-  background:linear-gradient(145deg,#1b2b47,#111729)
-}
-.universe:nth-child(2){background:linear-gradient(145deg,#40254a,#171526)}
-.universe:nth-child(3){background:linear-gradient(145deg,#4b2d22,#171729)}
-.universe:nth-child(4){background:linear-gradient(145deg,#173d3d,#111729)}
-.universe:hover{transform:translateY(-3px);border-color:var(--gold)}
-.universe .symbol{font-size:39px;opacity:.9;margin-bottom:17px}
-.universe h3{margin:0 0 6px;font-size:15px}
-.universe p{margin:0;color:var(--muted);font-size:11px}
-.cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}
-.card{min-width:0;border:1px solid var(--line);background:var(--panel);border-radius:14px;overflow:hidden;cursor:pointer}
-.card:hover{transform:translateY(-4px);border-color:var(--gold)}
-.card-art{height:145px;display:flex;align-items:center;justify-content:center;font-size:56px;background:radial-gradient(circle at 50% 35%,#54447b,#1a2039 65%)}
-.card:nth-child(2) .card-art{background:radial-gradient(circle,#68402c,#202035 70%)}
-.card:nth-child(3) .card-art{background:radial-gradient(circle,#245d61,#152033 70%)}
-.card:nth-child(4) .card-art{background:radial-gradient(circle,#35508b,#161d32 70%)}
-.card:nth-child(5) .card-art{background:radial-gradient(circle,#74414e,#20182d 70%)}
-.card-info{padding:12px}
-.rarity{font-size:9px;font-weight:850;letter-spacing:1px;color:var(--purple)}
-.card h3{font-size:13px;margin:7px 0 5px}
-.card p{font-size:11px;color:var(--muted);margin:0}
-.card-bottom{display:flex;justify-content:space-between;align-items:center;gap:5px;margin-top:12px;font-size:11px}
-.coin{color:var(--gold)}
-.two-col{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
-.panel{border:1px solid var(--line);border-radius:var(--radius);padding:19px;background:var(--panel)}
-.pack-row{display:flex;align-items:center;gap:13px;padding:13px 0;border-bottom:1px solid var(--line)}
-.pack-row:last-child{border-bottom:0}
-.pack-icon{width:49px;height:59px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(145deg,#6047a4,#171c37);font-size:23px}
-.pack-row h3{font-size:13px;margin:0 0 5px}
-.pack-row p{font-size:11px;color:var(--muted);margin:0}
-.pack-row .btn{margin-left:auto}
-.activity{display:flex;align-items:center;gap:11px;padding:13px 0;border-bottom:1px solid var(--line);font-size:12px}
-.activity:last-child{border:0}
-.activity .avatar{width:35px;height:35px;display:grid;place-items:center;border-radius:50%;background:#263453}
-.activity p{margin:0;line-height:1.6}
-.activity small{color:var(--muted)}
-footer{
-  border-top:1px solid var(--line);padding:25px 28px;color:var(--muted);
-  font-size:11px;display:flex;gap:15px;justify-content:space-between;
-  flex-wrap:wrap;margin-top:35px
-}
-.mobile-nav,.mobile-brand{display:none}
-.toast{
-  position:fixed;bottom:22px;right:22px;z-index:10000;
-  background:#1c2940;border:1px solid #405474;border-radius:12px;
-  padding:14px 18px;max-width:330px;font-size:13px;
-  box-shadow:0 12px 40px #0008;display:none
-}
-.toast.show{display:block;animation:toastFade .25s ease}
-@keyframes toastFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+        <section class="hero">
+          <div class="hero-copy">
+            <span class="eyebrow">L'univers des collectionneurs</span>
+            <h1>Collectionne.<br /><span>Évolue.</span> Domine.</h1>
+            <p>
+              RAIZEN rassemble collection, univers, personnages et passion autour
+a d'une expérience immersive inspirée des mangas et des animés.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#collection">Explorer</a>
+              <a class="btn btn-light" href="login.html">Créer un compte</a>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="orb"></div>
+            <div class="symbol">雷</div>
+          </div>
+        </section>
 
-@media(max-width:1150px){
-  .sidebar{width:195px}.main{margin-left:195px}
-  .content{padding:18px}
-  .features,.universes{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .hero-art{right:0;opacity:.5}
-}
-@media(max-width:700px){
-  .sidebar{display:none}.main{margin-left:0}
-  .topbar{height:62px;padding:0 12px;gap:8px}
-  .topbar .search{font-size:12px;padding:10px}
-  .top-actions .optional{display:none}
-  .top-actions .btn{padding:9px;font-size:11px}
-  .content{padding:13px}
-  .hero{padding:24px 20px;min-height:365px}
-  .hero-art{width:45%;height:50%;bottom:0;opacity:.3}
-  .hero h1{font-size:43px}
-  .hero p{font-size:13px}
-  .features,.universes{gap:9px}
-  .feature{padding:14px;min-height:135px}
-  .universe{padding:14px;min-height:140px}
-  .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-  .card-art{height:125px}
-  .two-col{grid-template-columns:1fr}
-  .mobile-nav{
-    display:flex;position:fixed;bottom:0;left:0;right:0;z-index:6;
-    background:#0d1422f5;border-top:1px solid var(--line);
-    justify-content:space-around;padding:10px 4px calc(10px + env(safe-area-inset-bottom));
-    backdrop-filter:blur(15px)
-  }
-  .mobile-nav a{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--muted);font-size:9px}
-  .mobile-nav span{font-size:19px}
-  footer{padding-bottom:90px}
-  .intro-emblem{width:72px;height:72px;margin-bottom:22px}
-  .intro-tagline{max-width:290px}
-}
-</style>
-</head>
+        <section class="section" id="collection">
+          <div class="section-header">
+            <div>
+              <h2>Cartes à découvrir</h2>
+              <p>Des univers à explorer, des collections à construire.</p>
+            </div>
+            <span class="chip">5 cartes</span>
+          </div>
 
-<body>
+          <div class="cards-grid" data-cards>
+            <article class="card">
+              <div class="card-art art-one">🐉</div>
+              <div class="card-body">
+                <span class="rarity rare">Légendaire</span>
+                <h3>Kael, Dragon royal</h3>
+                <p>Chroniques d'Aether</p>
+              </div>
+            </article>
 
-<!-- INTRO CINÉMATIQUE -->
-<div id="raizen-intro" role="status" aria-label="Introduction RAIZEN">
-  <div class="intro-ambient"></div>
-  <div class="intro-content">
-    <svg class="intro-emblem" viewBox="0 0 100 100" aria-hidden="true">
-      <defs>
-        <linearGradient id="intro-gradient" x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0%" stop-color="#4389FF"/>
-          <stop offset="55%" stop-color="#8B5CF6"/>
-          <stop offset="100%" stop-color="#F1B94B"/>
-        </linearGradient>
-      </defs>
-      <path class="intro-frame" d="M50 7 L87 28 L87 68 L50 91 L13 70 L13 30 Z"/>
-      <path class="intro-mark" d="M32 67 L32 32 L53 32 Q69 32 69 45 Q69 55 56 57 L70 70 M32 49 L53 49"/>
-    </svg>
+            <article class="card">
+              <div class="card-art art-two">影</div>
+              <div class="card-body">
+                <span class="rarity epic">Épique</span>
+                <h3>Ren, Ombre vive</h3>
+                <p>Voie du Ninja</p>
+              </div>
+            </article>
 
-    <h1 class="intro-wordmark" aria-label="RAIZEN">
-      <span class="intro-letter" aria-hidden="true">R</span>
-      <span class="intro-letter" aria-hidden="true">A</span>
-      <span class="intro-letter" aria-hidden="true">I</span>
-      <span class="intro-letter" aria-hidden="true">Z</span>
-      <span class="intro-letter" aria-hidden="true">E</span>
-      <span class="intro-letter" aria-hidden="true">N</span>
-    </h1>
+            <article class="card">
+              <div class="card-art art-three">✧</div>
+              <div class="card-body">
+                <span class="rarity common">Rare</span>
+                <h3>Mira, Flux astral</h3>
+                <p>Énergies occultes</p>
+              </div>
+            </article>
 
-    <p class="intro-tagline">TON UNIVERS. TA PASSION.<br>TA COMMUNAUTÉ.</p>
-    <div class="intro-divider"></div>
-    <p class="intro-subline">EXPLORE · COLLECTIONNE · ÉVOLUE</p>
+            <article class="card">
+              <div class="card-art art-four">⚡</div>
+              <div class="card-body">
+                <span class="rarity epic">Épique</span>
+                <h3>Aeron, Tempête</h3>
+                <p>Légendes des mers</p>
+              </div>
+            </article>
 
-    <div class="intro-loading" aria-hidden="true">
-      <div class="intro-track"><div class="intro-bar"></div></div>
-      <div class="intro-label">BIENVENUE DANS RAIZEN</div>
+            <article class="card">
+              <div class="card-art art-five">🌙</div>
+              <div class="card-body">
+                <span class="rarity common">Rare</span>
+                <h3>Yuna, Gardienne lunaire</h3>
+                <p>Chroniques d'Aether</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section two-columns">
+          <div class="panel">
+            <div class="section-header compact">
+              <div>
+                <h2>Paquets recommandés</h2>
+              </div>
+            </div>
+            <div class="pack-list">
+              <div class="pack-item">
+                <div class="pack-icon">✦</div>
+                <div>
+                  <h3>Origines mystérieuses</h3>
+                  <p>5 cartes · Très bon départ</p>
+                </div>
+              </div>
+              <div class="pack-item">
+                <div class="pack-icon">⚡</div>
+                <div>
+                  <h3>Puissance astrale</h3>
+                  <p>5 cartes · Énergie & légendes</p>
+                </div>
+              </div>
+              <div class="pack-item">
+                <div class="pack-icon">♜</div>
+                <div>
+                  <h3>Édition des anciens</h3>
+                  <p>5 cartes · Fantasy & aventure</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="section-header compact">
+              <div>
+                <h2>Activité</h2>
+              </div>
+            </div>
+            <div class="activity-list" data-activity>
+              <div class="activity-item">
+                <span class="avatar">R</span>
+                <div>
+                  <strong>Nouvelle collection</strong>
+                  <p>Kael, Dragon royal ajouté à la collection.</p>
+                </div>
+              </div>
+              <div class="activity-item">
+                <span class="avatar">A</span>
+                <div>
+                  <strong>Événement</strong>
+                  <p>Une nouvelle vague de boosters arrive prochainement.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
-  </div>
-</div>
 
-<div class="layout">
-<aside class="sidebar">
-  <a class="brand" href="#accueil">RAIZEN</a>
-  <div class="tagline">COLLECT · PLAY · RISE</div>
-
-  <div class="nav-title">PRINCIPAL</div>
-  <a class="nav active" href="#accueil"><span class="nav-icon">⌂</span>Accueil</a>
-  <a class="nav" href="#collection"><span class="nav-icon">▧</span>Collection</a>
-  <a class="nav" href="#paquets"><span class="nav-icon">◇</span>Paquets</a>
-  <a class="nav" href="#jeu"><span class="nav-icon">⚔</span>Jeu</a>
-  <a class="nav" href="#marche"><span class="nav-icon">♧</span>Marché</a>
-  <a class="nav" href="#communaute"><span class="nav-icon">♙</span>Communauté</a>
-
-  <div class="nav-title">EXPLORER</div>
-  <a class="nav" href="#univers"><span class="nav-icon">✧</span>Tous les univers</a>
-  <a class="nav" href="#collection"><span class="nav-icon">▤</span>Cartes</a>
-  <a class="nav" href="#classements"><span class="nav-icon">♜</span>Classements</a>
-
-  <div class="sidebar-note">
-    <strong>Ton aventure commence ici.</strong>
-    <p>Découvre des univers, complète tes collections et prépare-toi à écrire ta légende.</p>
-    <button class="btn gold" style="width:100%" onclick="notify('La création de compte sera activée avec le backend.')">Rejoindre RAIZEN</button>
-  </div>
-</aside>
-
-<main class="main" id="accueil">
-<header class="topbar">
-  <input class="search" id="search" type="search" placeholder="⌕ Rechercher une carte, un univers..." aria-label="Rechercher">
-  <div class="top-actions">
-    <button class="btn optional" onclick="notify('La connexion sera activée lors de la prochaine étape.')">Connexion</button>
-    <button class="btn gold" onclick="notify('La création de compte sera activée lors de la prochaine étape.')">S'inscrire</button>
-  </div>
-</header>
-
-<div class="content">
-<section class="hero">
-  <div class="hero-content">
-    <div class="eyebrow">✦ L'univers des collectionneurs</div>
-    <h1>Collectionne.<br><span>Évolue.</span> Domine.</h1>
-    <p>Entre dans un nouvel univers dédié aux mangas et aux animés. Découvre des cartes, explore tes séries préférées et construis ta collection ultime.</p>
-    <div class="hero-buttons">
-      <a class="btn gold" href="#univers">Explorer les univers ↗</a>
-      <a class="btn" href="#collection">Découvrir les cartes</a>
-    </div>
-  </div>
-  <div class="hero-art" aria-hidden="true"><div class="art-orb"></div><div class="art-symbol">雷</div></div>
-</section>
-
-<section class="section" id="jeu">
-  <div class="section-head"><div><h2>Un univers. Plusieurs façons de jouer.</h2><div class="sub">Tout commence par ta collection.</div></div></div>
-  <div class="features">
-    <a class="feature" href="#collection"><div class="icon">✧</div><h3>Collection</h3><p>Découvre des cartes et complète tes collections.</p></a>
-    <a class="feature" href="#paquets"><div class="icon">◇</div><h3>Paquets</h3><p>Explore les paquets et découvre leurs surprises.</p></a>
-    <a class="feature" href="#jeu"><div class="icon">⚔</div><h3>Combats</h3><p>Prépare tes équipes pour les futurs affrontements.</p></a>
-    <a class="feature" href="#communaute"><div class="icon">♧</div><h3>Communauté</h3><p>Partage ta passion avec les autres collectionneurs.</p></a>
-  </div>
-</section>
-
-<section class="section" id="univers">
-  <div class="section-head"><div><h2>Explore les univers</h2><div class="sub">Des mondes à découvrir, une collection à construire.</div></div><a class="link" href="#collection">Voir les cartes ↗</a></div>
-  <div class="universes" id="universeGrid">
-    <a class="universe searchable" data-search="fantasy dragons aventure" href="#collection"><div class="symbol">🐉</div><h3>Fantasy & Dragons</h3><p>Magie · Aventure · Légendes</p></a>
-    <a class="universe searchable" data-search="ninjas arts martiaux" href="#collection"><div class="symbol">影</div><h3>Voie du Ninja</h3><p>Discipline · Pouvoir · Rivalités</p></a>
-    <a class="universe searchable" data-search="pirates océan aventure" href="#collection"><div class="symbol">☠</div><h3>Légendes des mers</h3><p>Liberté · Trésors · Exploration</p></a>
-    <a class="universe searchable" data-search="sorcellerie énergie esprits" href="#collection"><div class="symbol">✦</div><h3>Énergies occultes</h3><p>Énergie · Mystère · Combats</p></a>
-  </div>
-  <p class="sub">Univers fictifs de démonstration — les licences et contenus officiels seront ajoutés avec les autorisations nécessaires.</p>
-</section>
-
-<section class="section" id="collection">
-  <div class="section-head"><div><h2>Cartes à découvrir</h2><div class="sub">Une première sélection de démonstration.</div></div><span class="sub" id="resultCount">5 cartes</span></div>
-  <div class="filters" id="filters">
-    <button class="chip active" data-filter="all">Toutes</button>
-    <button class="chip" data-filter="Légendaire">Légendaires</button>
-    <button class="chip" data-filter="Épique">Épiques</button>
-    <button class="chip" data-filter="Rare">Rares</button>
-  </div>
-
-  <div class="cards" id="cardGrid">
-    <article class="card searchable" data-rarity="Légendaire" data-search="kael dragon légendaire fantasy">
-      <div class="card-art">🐉</div><div class="card-info"><div class="rarity" style="color:#f1b94b">★ LÉGENDAIRE</div><h3>Kael, Dragon royal</h3><p>Chroniques d'Aether</p><div class="card-bottom"><span>Carte #001</span><span class="coin">◆ 4 800</span></div></div>
-    </article>
-    <article class="card searchable" data-rarity="Épique" data-search="ren ombre épique ninja">
-      <div class="card-art">影</div><div class="card-info"><div class="rarity" style="color:#bd8cff">✦ ÉPIQUE</div><h3>Ren, Ombre vive</h3><p>Voie du Ninja</p><div class="card-bottom"><span>Carte #002</span><span class="coin">◆ 2 300</span></div></div>
-    </article>
-    <article class="card searchable" data-rarity="Rare" data-search="mira énergie rare magie">
-      <div class="card-art">✧</div><div class="card-info"><div class="rarity" style="color:#4cdec1">◆ RARE</div><h3>Mira, Flux astral</h3><p>Énergies occultes</p><div class="card-bottom"><span>Carte #003</span><span class="coin">◆ 1 200</span></div></div>
-    </article>
-    <article class="card searchable" data-rarity="Épique" data-search="aeron tempête épique mer">
-      <div class="card-art">⚡</div><div class="card-info"><div class="rarity" style="color:#bd8cff">✦ ÉPIQUE</div><h3>Aeron, Tempête</h3><p>Légendes des mers</p><div class="card-bottom"><span>Carte #004</span><span class="coin">◆ 1 850</span></div></div>
-    </article>
-    <article class="card searchable" data-rarity="Rare" data-search="yuna gardienne rare fantasy">
-      <div class="card-art">🌙</div><div class="card-info"><div class="rarity" style="color:#4cdec1">◆ RARE</div><h3>Yuna, Gardienne lunaire</h3><p>Chroniques d'Aether</p><div class="card-bottom"><span>Carte #005</span><span class="coin">◆ 950</span></div></div>
-    </article>
-  </div>
-  <p class="sub">Les prix affichés sont fictifs et ne représentent aucune valeur marchande réelle.</p>
-</section>
-
-<div class="two-col section">
-<section class="panel" id="paquets">
-  <div class="section-head"><div><h2>Paquets recommandés</h2><div class="sub">Prépare ta prochaine découverte.</div></div></div>
-  <div class="pack-row"><div class="pack-icon">✦</div><div><h3>Origines mystérieuses</h3><p>5 cartes · Plusieurs raretés</p></div><button class="btn" onclick="notify('Les ouvertures de paquets seront activées après la création du système de collection.')">Découvrir</button></div>
-  <div class="pack-row"><div class="pack-icon">⚡</div><div><h3>Puissance astrale</h3><p>5 cartes · Énergie & légendes</p></div><button class="btn" onclick="notify('Ce paquet est actuellement une présentation de démonstration.')">Découvrir</button></div>
-  <div class="pack-row"><div class="pack-icon">♜</div><div><h3>Édition des anciens</h3><p>5 cartes · Fantasy & aventure</p></div><button class="btn" onclick="notify('Ce paquet sera bientôt configurable.')">Découvrir</button></div>
-</section>
-
-<section class="panel" id="communaute">
-  <div class="section-head"><div><h2>La communauté RAIZEN</h2><div class="sub">Un espace à construire ensemble.</div></div></div>
-  <div class="activity"><div class="avatar">✦</div><p><strong>Profils de collectionneurs</strong><br><small>Présente tes cartes favorites.</small></p></div>
-  <div class="activity"><div class="avatar">♧</div><p><strong>Échanges entre joueurs</strong><br><small>Un système sécurisé à venir.</small></p></div>
-  <div class="activity"><div class="avatar">♜</div><p><strong>Classements et événements</strong><br><small>De futurs objectifs communautaires.</small></p></div>
-  <button class="btn gold" style="width:100%;margin-top:15px" onclick="notify('Les comptes seront disponibles après la configuration du backend.')">Créer mon compte</button>
-</section>
-</div>
-
-<section class="section panel" id="marche">
-  <div class="section-head"><div><h2>Le marché</h2><div class="sub">Un futur espace d'échanges et de commerce entre collectionneurs.</div></div></div>
-  <p class="sub">Le marché est en préparation. Aucun échange ni paiement réel n'est actif dans cette version.</p>
-</section>
-</div>
-
-<footer>
-  <a class="brand" href="#accueil" style="font-size:20px">RAIZEN</a>
-  <span>COLLECT · PLAY · RISE</span>
-  <span>Concept en développement · Version 0.1</span>
-  <span>© RAIZEN — Nom provisoire</span>
-</footer>
-</main>
-</div>
-
-<nav class="mobile-nav" aria-label="Navigation mobile">
-  <a href="#accueil"><span>⌂</span>Accueil</a>
-  <a href="#univers"><span>✧</span>Univers</a>
-  <a href="#collection"><span>▧</span>Cartes</a>
-  <a href="#paquets"><span>◇</span>Paquets</a>
-  <a href="#communaute"><span>♧</span>Communauté</a>
-</nav>
-
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<script>
-const toast = document.getElementById('toast');
-let toastTimer;
-
-function notify(message) {
-  toast.textContent = message;
-  toast.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
-}
-
-const search = document.getElementById('search');
-const cards = [...document.querySelectorAll('#cardGrid .card')];
-const searchable = [...document.querySelectorAll('.searchable')];
-let rarity = 'all';
-
-function updateCards() {
-  const q = search.value.trim().toLocaleLowerCase('fr');
-  let count = 0;
-
-  cards.forEach(card => {
-    const matchesText = (card.dataset.search + ' ' + card.innerText)
-      .toLocaleLowerCase('fr').includes(q);
-    const matchesRarity = rarity === 'all' || card.dataset.rarity === rarity;
-    card.hidden = !(matchesText && matchesRarity);
-    if (!card.hidden) count++;
-  });
-
-  document.getElementById('resultCount').textContent =
-    count + (count > 1 ? ' cartes' : ' carte');
-
-  searchable.filter(el => !el.matches('.card')).forEach(el => {
-    el.hidden = !((el.dataset.search || '').toLocaleLowerCase('fr').includes(q));
-  });
-}
-
-search.addEventListener('input', updateCards);
-
-document.getElementById('filters').addEventListener('click', event => {
-  const button = event.target.closest('[data-filter]');
-  if (!button) return;
-
-  rarity = button.dataset.filter;
-  document.querySelectorAll('[data-filter]').forEach(item =>
-    item.classList.toggle('active', item === button)
-  );
-  updateCards();
-});
-
-document.querySelectorAll('.nav').forEach(link => {
-  link.addEventListener('click', () => {
-    document.querySelectorAll('.nav').forEach(item => item.classList.remove('active'));
-    link.classList.add('active');
-  });
-});
-
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('click', () => {
-    notify(card.querySelector('h3').textContent + ' — fiche détaillée à développer.');
-  });
-});
-
-/* Démarrage de la cinématique */
-(() => {
-  const intro = document.getElementById('raizen-intro');
-  if (!intro) return;
-
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const duration = reducedMotion ? 100 : 1800;
-
-  window.setTimeout(() => {
-    intro.classList.add('is-hidden');
-    window.setTimeout(() => intro.remove(), 750);
-  }, duration);
-})();
-</script>
-</body>
+    <script src="js/app.js"></script>
+  </body>
 </html>
-```

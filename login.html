@@ -1,1 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RAIZEN | Connexion</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="auth-page">
+    <div class="auth-panel">
+      <div class="auth-brand">RAIZEN</div>
+      <h1>Connexion</h1>
+      <p class="subtitle">Accède à ta collection et à ton profil.</p>
 
+      <form id="loginForm" class="auth-form">
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" placeholder="you@example.com" required />
+        </label>
+
+        <label>
+          <span>Mot de passe</span>
+          <input type="password" name="password" placeholder="••••••••" required />
+        </label>
+
+        <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+      </form>
+
+      <div class="auth-links">
+        <a href="index.html">Retour à l'accueil</a>
+        <a href="profile.html">Voir le profil</a>
+      </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+  </body>
+</html>

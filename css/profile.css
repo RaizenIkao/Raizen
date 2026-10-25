@@ -1,0 +1,38 @@
+body {
+  background: #101827;
+  color: #eff4ff;
+}
+
+.profile-page {
+  display: grid;
+  place-items: center;
+}
+
+.profile-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.profile-card,
+.collection-panel,
+.stat-box {
+  background: rgba(18, 29, 49, 0.88);
+  border: 1px solid #2a3d5d;
+  border-radius: 22px;
+}
+
+.profile-card {
+  padding: 28px;
+}
+
+.collection-panel {
+  padding: 22px;
+}
+
+.mini-card {
+  transition: transform 0.2s ease;
+}
+
+.mini-card:hover {
+  transform: scale(1.02);
+}
