@@ -1,37 +1,32 @@
-# RAIZEN
+# RISHI
 
-RAIZEN est un projet de plateforme communautaire de cartes inspirée des univers anime et manga.
+RISHI is a local-first demo trading card game experience built with React + TypeScript + Vite.
 
-## Audit validé
+## Features
 
-Le dépôt a été audité et les points suivants sont confirmés :
-- les pages d'accueil, profil et réglages sont les fondations utiles à conserver ;
-- les dossiers `css/css/` et `css/js/` sont des doublons hérités et doivent être évités ;
-- les fichiers vides, incomplets et les scripts de démonstration locale doivent être clairement séparés du backend réel ;
-- la structure front statique est exploitable pour GitHub Pages ;
-- les fonctions Supabase et authentification réelle doivent passer par un backend sécurisé.
+- Local mode with browser persistence
+- Dashboard, collection, boosters, decks, battles, market, community, rankings, profiles
+- Responsive layout for desktop and mobile
+- GitHub Pages friendly routing with base path configured for this repository
+- Booster probability system with visible weights
 
-## Phase en cours
+## Commands
 
-Le front a été consolidé pour couvrir :
-- accueil fonctionnel,
-- navigation cohérente,
-- collection filtrable,
-- booster local démonstration,
-- profil personnalisé,
-- paramètres de thème et d'interface,
-- documentation des données de catalogue.
+```bash
+npm install
+npm run dev
+npm run build
+npm run test
+```
 
-## Limites connues
+## GitHub Pages
 
-- Aucun compte réel n'est branché.
-- Les identifiants Google/Facebook ne sont pas configurés.
-- Les données ne sont pas synchronisées avec Supabase.
-- Les boosters et l'EXP ne doivent pas être présentés comme sécurisés sans backend.
+The app is configured with `base: '/Raizen/'` and includes a `public/404.html` fallback for SPA routing.
 
-## Prochaine étape recommandée
+## Local mode
 
-1. Finaliser la collection avec fiche détaillée et variantes.
-2. Ajouter le système d'EXP, niveaux et succès.
-3. Préparer Supabase Auth et le schéma SQL.
-4. Vérifier le déploiement GitHub Pages / Supabase.
+The app uses `localStorage` for a demo profile and progress. This is not production backend data.
+
+## Supabase setup
+
+Add your public Supabase values in `.env.local` using the example file and enable a real backend later.

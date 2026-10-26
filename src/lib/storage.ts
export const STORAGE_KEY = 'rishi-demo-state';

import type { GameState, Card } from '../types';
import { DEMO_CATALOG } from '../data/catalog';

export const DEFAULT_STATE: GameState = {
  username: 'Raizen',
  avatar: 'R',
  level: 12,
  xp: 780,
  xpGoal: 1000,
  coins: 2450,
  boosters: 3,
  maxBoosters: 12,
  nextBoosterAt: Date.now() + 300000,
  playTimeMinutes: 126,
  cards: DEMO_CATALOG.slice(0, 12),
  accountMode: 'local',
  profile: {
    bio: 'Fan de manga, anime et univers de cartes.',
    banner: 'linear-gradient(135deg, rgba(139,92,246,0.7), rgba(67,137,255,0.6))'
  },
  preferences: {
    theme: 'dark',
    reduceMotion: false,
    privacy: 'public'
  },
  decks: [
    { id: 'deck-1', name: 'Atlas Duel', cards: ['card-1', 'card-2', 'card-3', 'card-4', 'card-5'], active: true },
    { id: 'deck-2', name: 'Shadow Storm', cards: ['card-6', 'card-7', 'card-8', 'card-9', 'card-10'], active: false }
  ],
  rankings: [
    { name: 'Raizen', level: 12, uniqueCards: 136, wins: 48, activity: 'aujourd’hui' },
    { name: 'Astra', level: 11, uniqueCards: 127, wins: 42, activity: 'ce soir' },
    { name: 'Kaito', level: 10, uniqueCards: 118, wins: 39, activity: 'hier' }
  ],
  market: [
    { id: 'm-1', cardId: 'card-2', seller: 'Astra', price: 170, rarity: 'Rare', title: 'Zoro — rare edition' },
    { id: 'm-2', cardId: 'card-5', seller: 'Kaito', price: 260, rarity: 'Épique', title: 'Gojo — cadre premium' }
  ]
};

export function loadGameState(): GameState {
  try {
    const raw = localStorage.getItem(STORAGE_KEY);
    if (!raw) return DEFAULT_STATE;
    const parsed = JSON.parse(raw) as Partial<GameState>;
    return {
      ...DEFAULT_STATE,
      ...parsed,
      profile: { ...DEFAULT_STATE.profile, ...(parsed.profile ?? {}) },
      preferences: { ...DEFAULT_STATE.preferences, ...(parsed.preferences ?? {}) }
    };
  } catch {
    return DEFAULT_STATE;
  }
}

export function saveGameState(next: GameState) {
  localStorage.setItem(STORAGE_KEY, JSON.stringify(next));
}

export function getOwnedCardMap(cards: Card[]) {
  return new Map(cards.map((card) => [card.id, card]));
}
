@@ -1,0 +1,52 @@
+export const RARITIES = [
+  { id: 'C', name: 'Commun', weight: 48, color: '#94a3b8' },
+  { id: 'UC', name: 'Peu commun', weight: 27, color: '#5eead4' },
+  { id: 'R', name: 'Rare', weight: 15, color: '#60a5fa' },
+  { id: 'SP', name: 'Super Rare', weight: 7, color: '#c084fc' },
+  { id: 'UR', name: 'Ultra Rare', weight: 2, color: '#fbbf24' },
+  { id: 'E', name: 'Épique', weight: 0.8, color: '#f87171' },
+  { id: 'L', name: 'Légendaire', weight: 0.2, color: '#facc15' }
+] as const;
+
+export const VARIANTS = [
+  { id: 'standard', name: 'Standard', cosmetic: false },
+  { id: 'mythic', name: 'Mythique', cosmetic: true },
+  { id: 'alternative', name: 'Alternative', cosmetic: true },
+  { id: 'secret', name: 'Secrète', cosmetic: true },
+  { id: 'shiny', name: 'Shiny', cosmetic: true },
+  { id: 'rainbow', name: 'Rainbow', cosmetic: true },
+  { id: 'gold', name: 'Gold', cosmetic: true },
+  { id: 'manga', name: 'Manga', cosmetic: true }
+] as const;
+
+export const UNIVERSES: Universe[] = [
+  { id: 'one-piece', name: 'One Piece', description: 'Pirates, légendes et aventures océaniques.', cards: 128 },
+  { id: 'naruto', name: 'Naruto', description: 'Ninja, clans et jutsus légendaires.', cards: 114 },
+  { id: 'bleach', name: 'Bleach', description: 'Soul Reaper et pouvoirs spirituels.', cards: 94 },
+  { id: 'dragon-ball', name: 'Dragon Ball', description: 'Saiyans, combats cosmiques et puissance brute.', cards: 135 },
+  { id: 'my-hero', name: 'My Hero Academia', description: 'Héros, quirks et forces extraordinaires.', cards: 96 },
+  { id: 'snk', name: 'Attack on Titan', description: 'Mur, titans et survie humaine.', cards: 88 },
+  { id: 'jujutsu', name: 'Jujutsu Kaisen', description: 'Cursed techniques et duels intenses.', cards: 101 },
+  { id: 'slime', name: 'Reincarnated as a Slime', description: 'Royaumes, magie et domination.', cards: 74 }
+];
+
+const demoNames = [
+  'Luffy', 'Zoro', 'Naruto', 'Sasuke', 'Ichigo', 'Goku', 'Vegeta', 'Midoriya',
+  'Eren', 'Yuji', 'Rimuru', 'Sailor Moon', 'Gojo', 'Tanjiro', 'Erza', 'Mikasa', 'Levi', 'Light', 'Kenshin', 'Asta'
+];
+
+export function createDemoCatalog() {
+  return demoNames.map((name, index) => ({
+    id: `card-${index + 1}`,
+    name,
+    universe: UNIVERSES[index % UNIVERSES.length].name,
+    rarity: (['C', 'UC', 'R', 'SP', 'UR', 'E', 'L'] as const)[index % 7],
+    variant: (['standard', 'shiny', 'alternative', 'manga', 'gold', 'rainbow', 'secret'] as const)[index % 7],
+    edition: `Ext. ${index + 1}`,
+    image: `https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=900&q=80`,
+    power: 80 + ((index * 17) % 60),
+    hp: 120 + ((index * 13) % 80)
+  }));
+}
+
+export const DEMO_CATALOG = createDemoCatalog();
