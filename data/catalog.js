@@ -4,6 +4,8 @@
  * Ne pas télécharger automatiquement des images protégées.
  */
 
+export const PLACEHOLDER_CARD_IMAGE = "/assets/cards/raizen-placeholder.svg";
+
 export const RARITIES = [
   { id: "C", name: "Commun", rank: 1, weight: 6000 },
   { id: "UC", name: "Peu commun", rank: 2, weight: 2500 },
@@ -183,8 +185,8 @@ export function buildCardCatalog() {
           rarityName: rarity.name,
           rarityRank: rarity.rank,
           variantId: "standard",
-          image: `/assets/cards/${universe.id}/${slug}/${rarity.id.toLowerCase()}.webp`,
-          imageStatus: "missing",
+          image: PLACEHOLDER_CARD_IMAGE,
+          imageStatus: "placeholder",
           edition: "standard",
           obtainable: true
         });
