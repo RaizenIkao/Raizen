@@ -1,32 +1,34 @@
-# RISHI
+# RAIZEN
 
-RISHI is a local-first demo trading card game experience built with React + TypeScript + Vite.
+RAIZEN est une plateforme démonstration de cartes anime/manga, conçue pour fonctionner en mode local sur navigateur et être déployée facilement sur GitHub Pages.
 
-## Features
-
-- Local mode with browser persistence
-- Dashboard, collection, boosters, decks, battles, market, community, rankings, profiles
-- Responsive layout for desktop and mobile
-- GitHub Pages friendly routing with base path configured for this repository
-- Booster probability system with visible weights
-
-## Commands
+## Démarrage
 
 ```bash
 npm install
 npm run dev
+```
+
+## Build
+
+```bash
 npm run build
+```
+
+## Tests
+
+```bash
 npm run test
 ```
 
+## Mode local
+
+Le projet utilise `localStorage` pour garder le profil, la collection, les boosters et les statistiques. Les données sont démonstratives et doivent être remplacées par un backend sécurisé en production.
+
 ## GitHub Pages
 
-The app is configured with `base: '/Raizen/'` and includes a `public/404.html` fallback for SPA routing.
+Le projet est configuré avec `base: '/Raizen/'` pour un bon routing sous GitHub Pages.
 
-## Local mode
+## Variables d'environnement
 
-The app uses `localStorage` for a demo profile and progress. This is not production backend data.
-
-## Supabase setup
-
-Add your public Supabase values in `.env.local` using the example file and enable a real backend later.
+Copiez `.env.example` vers `.env.local` ou ajoutez les valeurs directement dans votre environnement local.
